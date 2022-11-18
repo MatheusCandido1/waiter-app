@@ -37,6 +37,8 @@ export const Summary = styled.View`
 `;
 
 export const TotalContainer = styled.View`
+  flex: 1;
+  margin-right: 32px;
 `;
 
 
