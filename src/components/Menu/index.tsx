@@ -12,6 +12,7 @@ import {
 } from './styles';
 import { Text } from '../Text';
 import { formatCurrency } from '../../utils/formatCurrency';
+import { getImageUrl } from '../../utils/getImageUrl';
 import { PlusCircle } from '../Icons/PlusCircle';
 import { ProductModal } from '../ProductModal';
 
@@ -41,7 +42,7 @@ export function Menu() {
           <ProductContainer onPress={() => handleOpenModal(product)}>
             <ProductImage
               source={{
-                uri: `http://10.82.209.214:3001/uploads/${product.imagePath}`
+                uri: getImageUrl(product.imagePath)
               }}
             />
             <ProductDetails >

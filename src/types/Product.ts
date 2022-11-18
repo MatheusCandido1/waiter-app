@@ -4,9 +4,9 @@ export interface Product {
   description: string;
   imagePath: string;
   price: number;
-  ingredients: {
+  ingredients: [{
       name: string;
       icon: string;
       _id: string;
-  }
+  }];
 }

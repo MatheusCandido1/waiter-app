@@ -26,7 +26,8 @@ export const Header = styled.View`
 `;
 
 export const IngredientsContainer = styled.View`
-  margin-top: 16px;
+  margin-top: 32px;
+  flex: 1;
 `;
 
 export const Ingredient = styled.View`
@@ -38,4 +39,16 @@ export const Ingredient = styled.View`
   margin-bottom: 4px;
 `;
 
+export const Footer = styled.View`
+  min-height: 110px;
+  background: #FFF;
+  padding: 16px 24px;
+`;
 
+export const FooterContainer = styled.SafeAreaView`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const PriceContainer = styled.View``;
