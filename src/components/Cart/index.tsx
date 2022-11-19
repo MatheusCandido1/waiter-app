@@ -20,24 +20,42 @@ import { MinusCircle } from '../Icons/MinusCircle';
 import { Button } from '../Button';
 import { Product } from '../../types/Product';
 import { OrderConfirmedModal } from '../OrderConfirmedModal';
+import { api } from '../../services/axios';
 
 interface CartProps {
   cartItems: CartItem[];
   onAdd: (product: Product) => void;
   onRemove: (product: Product) => void;
   onConfirmOrder: () => void;
+  selectedTable: string,
 }
 
-export function Cart({ cartItems, onAdd, onRemove, onConfirmOrder }: CartProps) {
-  const [isLoading] = useState(false);
+export function Cart({ cartItems, onAdd, onRemove, onConfirmOrder, selectedTable }: CartProps) {
+  const [isLoading, setIsLoading] = useState(false);
   const [isOrderConfirmedModal, setisOrderConfirmedModal] = useState(false);
 
   const total = cartItems.reduce((acc, cartItem) => {
     return acc + (cartItem.product.price * cartItem.quantity);
   }, 0);
 
-  function handleConfirmOrder() {
-    setisOrderConfirmedModal(true);
+  async function handleConfirmOrder() {
+
+    const payload = {
+      table: selectedTable,
+      products: cartItems.map((cartItem) => ({
+        product: cartItem.product._id,
+        quantity: cartItem.quantity,
+      }))
+    };
+
+    try {
+      setIsLoading(true);
+      const response = await api.post('/orders', payload);
+      setisOrderConfirmedModal(true);
+      setIsLoading(false);
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   function handleOk() {
